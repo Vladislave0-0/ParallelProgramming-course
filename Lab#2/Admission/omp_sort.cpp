@@ -1,5 +1,8 @@
 #include <omp.h>
+#include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <time.h>
 
 /**
  * @brief параллельная версия qsort
@@ -54,4 +57,48 @@ int cmp_int(const void *pa, const void *pb) {
 
 void sort_qsort(int *a, int n) { qsort(a, n, sizeof(int), cmp_int); }
 
-int main() {}
+void benchmark(FILE *file, int n, int runs) {
+  if (runs == 1)
+    fprintf(file, "n,threads,qsort_time,parallel_time\n");
+
+  int *a = (int *)malloc(n * sizeof(int));
+  int *b = (int *)malloc(n * sizeof(int));
+
+  double t_q, t_p;
+
+  for (int t = 1; t <= omp_get_max_threads(); t *= 2) {
+    omp_set_num_threads(t);
+
+    for (int i = 0; i < n; ++i)
+      a[i] = rand();
+
+    memcpy(b, a, n * sizeof(int));
+    clock_t ts = clock();
+    sort_qsort(b, n);
+    t_q = (double)(clock() - ts) / CLOCKS_PER_SEC;
+
+    memcpy(b, a, n * sizeof(int));
+    ts = clock();
+    sort_parallel_qsort(b, n);
+    t_p = (double)(clock() - ts) / CLOCKS_PER_SEC;
+
+    fprintf(file, "%d,%d,%.6f,%.6f\n", n, t, t_q, t_p);
+  }
+
+  free(a);
+  free(b);
+}
+
+int main() {
+  srand(0);
+
+  int sizes[] = {1000000, 2000000, 5000000, 10000000};
+  int runs = sizeof(sizes) / sizeof(sizes[0]);
+
+  FILE *file = fopen("results.csv", "w");
+
+  for (int i = 0; i < runs; i++)
+    benchmark(file, sizes[i], i + 1);
+
+  fclose(file);
+}
