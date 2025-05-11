@@ -4,6 +4,12 @@
 #include <string.h>
 #include <time.h>
 
+void swap(int *x, int *y) {
+  int tmp = *x;
+  *x = *y;
+  *y = tmp;
+}
+
 /**
  * @brief параллельная версия qsort
  *
@@ -15,21 +21,24 @@
 void parallel_qsort(int *a, int left, int right, int depth) {
   if (left >= right)
     return;
+
   int pivot = a[(left + right) / 2];
   int i = left, j = right;
+
   while (i <= j) {
     while (a[i] < pivot)
       i++;
+
     while (a[j] > pivot)
       j--;
+
     if (i <= j) {
-      int tmp = a[i];
-      a[i] = a[j];
-      a[j] = tmp;
+      swap(&a[i], &a[j]);
       i++;
       j--;
     }
   }
+
   if (depth > 0) {
 #pragma omp task shared(a)
     parallel_qsort(a, left, j, depth - 1);
@@ -66,7 +75,8 @@ void benchmark(FILE *file, int n, int runs) {
 
   double t_q, t_p;
 
-  for (int t = 1; t <= omp_get_max_threads(); t *= 2) {
+  int max_threads = omp_get_max_threads();
+  for (int t = 1; t <= max_threads; t *= 2) {
     omp_set_num_threads(t);
 
     for (int i = 0; i < n; ++i)
@@ -95,7 +105,7 @@ int main() {
   int sizes[] = {1000000, 2000000, 5000000, 10000000};
   int runs = sizeof(sizes) / sizeof(sizes[0]);
 
-  FILE *file = fopen("results.csv", "w");
+  FILE *file = fopen("./output/results.csv", "w");
 
   for (int i = 0; i < runs; i++)
     benchmark(file, sizes[i], i + 1);
