@@ -109,14 +109,14 @@ int main(int argc, char **argv) {
   MPI_Gather(&sendcount, 1, MPI_INT, counts, 1, MPI_INT, 0, MPI_COMM_WORLD);
   if (rank == 0) {
     displs[0] = 0;
-    for (int i = 1; i < size; i++)
+    for (int i = 1; i < size; ++i)
       displs[i] = displs[i - 1] + counts[i - 1];
   }
   MPI_Gatherv(&u_curr[1], sendcount, MPI_DOUBLE, global, counts, displs,
               MPI_DOUBLE, 0, MPI_COMM_WORLD);
   if (rank == 0) {
     FILE *f = fopen("./solution_output/parallel_solution.dat", "w");
-    for (int i = 0; i <= M; i++)
+    for (int i = 0; i <= M; ++i)
       fprintf(f, "%g %g\n", i * h, global[i]);
     fclose(f);
     free(global);
