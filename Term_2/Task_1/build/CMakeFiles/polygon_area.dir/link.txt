@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/polygon_area.dir/main.cpp.o -o polygon_area  libpolygon_area_lib.a /usr/lib/gcc/x86_64-linux-gnu/13/libgomp.so /usr/lib/x86_64-linux-gnu/libpthread.a 

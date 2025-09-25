@@ -1,0 +1,2 @@
+/usr/bin/ar qc libpolygon_area_lib.a CMakeFiles/polygon_area_lib.dir/polygon_area.cpp.o
+/usr/bin/ranlib libpolygon_area_lib.a
