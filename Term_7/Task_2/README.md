@@ -6,3 +6,12 @@
 CMake с версией не меньше 3.11
 <br><br>
 # Компиляция и запуск
+```powershell
+cmake -S ./ -B build/ -DCMAKE_BUILD_TYPE=Release
+cmake --build build/
+```
+
+**Запуск проекта/тестов**:
+```powershell
+./build/bin/ThreadSafeCounter
+```
