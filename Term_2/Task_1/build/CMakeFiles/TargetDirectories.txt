@@ -1,6 +1,0 @@
-/home/vlad/Documents/MIPT/7 семестр/Параллельное программирование/Term_2/Task_1/build/CMakeFiles/polygon_area_lib.dir
-/home/vlad/Documents/MIPT/7 семестр/Параллельное программирование/Term_2/Task_1/build/CMakeFiles/polygon_area.dir
-/home/vlad/Documents/MIPT/7 семестр/Параллельное программирование/Term_2/Task_1/build/CMakeFiles/google_test.dir
-/home/vlad/Documents/MIPT/7 семестр/Параллельное программирование/Term_2/Task_1/build/CMakeFiles/test.dir
-/home/vlad/Documents/MIPT/7 семестр/Параллельное программирование/Term_2/Task_1/build/CMakeFiles/edit_cache.dir
-/home/vlad/Documents/MIPT/7 семестр/Параллельное программирование/Term_2/Task_1/build/CMakeFiles/rebuild_cache.dir

@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/google_test.dir/google_test.cpp.o -o google_test  libpolygon_area_lib.a /usr/lib/x86_64-linux-gnu/libgtest_main.a /usr/lib/gcc/x86_64-linux-gnu/13/libgomp.so /usr/lib/x86_64-linux-gnu/libpthread.a /usr/lib/x86_64-linux-gnu/libgtest.a 

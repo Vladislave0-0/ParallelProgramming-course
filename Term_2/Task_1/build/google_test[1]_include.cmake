@@ -1,5 +1,0 @@
-if(EXISTS "/home/vlad/Documents/MIPT/7 семестр/Параллельное программирование/Term_2/Task_1/build/google_test[1]_tests.cmake")
-  include("/home/vlad/Documents/MIPT/7 семестр/Параллельное программирование/Term_2/Task_1/build/google_test[1]_tests.cmake")
-else()
-  add_test(google_test_NOT_BUILT google_test_NOT_BUILT)
-endif()
