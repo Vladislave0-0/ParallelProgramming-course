@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Читаем CSV
-data = pd.read_csv("./results/variant_1a/data_speedup.csv")
+data = pd.read_csv("./results/variant_3a/data_speedup.csv")
 
 # График ускорения
 plt.figure(figsize=(7,5))
